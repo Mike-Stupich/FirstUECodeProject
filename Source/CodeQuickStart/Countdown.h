@@ -22,10 +22,19 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	// UPROPERTY() Allows changes to the variable below it in the Editor
+	// Comments above it are visible as a hover over description in the editor
+
+	// How long, in seconds the countdown will run
+	UPROPERTY(EditAnywhere)
 	int32 CountdownTime;
 	class UTextRenderComponent* CountdownText;
 	void UpdateTimerDisplay();
 	void AdvanceTimer();
+	
+	UFUNCTION(BlueprintNativeEvent)
 	void CountdownHasFinished();
+	virtual void CountdownHasFinished_Implementation();
 	FTimerHandle CountdownTimerHandle;
 };
